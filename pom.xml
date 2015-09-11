@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.2.3.RELEASE</version>
     </parent>
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.taptech.app</groupId>
-	<artifactId>mule-starter-app</artifactId>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.taptech.app</groupId>
+    <artifactId>mule-starter-app</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>mule</packaging>
-	<name>Mule mule-starter-app Application</name>
+    <name>Mule mule-starter-app Application</name>
 
     <properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!--mule.version>3.7.0-M2-SNAPSHOT</mule.version-->
         <mule.version>3.6.1</mule.version>
         <mule.tools.version>1.0</mule.tools.version>
-		<jdk.version>1.7</jdk.version>
-		<junit.version>4.9</junit.version>
+        <jdk.version>1.7</jdk.version>
+        <junit.version>4.9</junit.version>
         <spring.boot.version>1.2.3.RELEASE</spring.boot.version>
         <!--start-class>org.taptech.app.MuleBootstrap</start-class-->
-	</properties>
+    </properties>
 
-	<build>
-		<plugins>
+    <build>
+        <plugins>
             <!--
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -44,15 +44,15 @@
                 </executions>
             </plugin>
             -->
-			<plugin>
-				<groupId>org.mule.tools.maven</groupId>
-				<artifactId>mule-app-maven-plugin</artifactId>
-				<version>${mule.tools.version}</version>
-				<extensions>true</extensions>
-				<configuration>
+            <plugin>
+                <groupId>org.mule.tools.maven</groupId>
+                <artifactId>mule-app-maven-plugin</artifactId>
+                <version>${mule.tools.version}</version>
+                <extensions>true</extensions>
+                <configuration>
                     <copyToAppsDirectory>true</copyToAppsDirectory>
-				</configuration>
-			</plugin>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
@@ -62,29 +62,29 @@
                     <mainClass>org.taptech.app.client.QueueClientSender</mainClass>
                 </configuration>
             </plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>1.7</version>
-				<executions>
-					<execution>
-						<id>add-resource</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>add-resource</goal>
-						</goals>
-						<configuration>
-							<resources>
-								<resource>
-									<directory>src/main/app/</directory>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>add-resource</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>add-resource</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/app/</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
         <dependency>
@@ -231,6 +231,14 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!--
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
+            <version>${spring.boot.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        -->
         <dependency>
             <groupId>org.mule.modules</groupId>
             <artifactId>mule-module-spring-config</artifactId>
@@ -246,9 +254,85 @@
         <dependency>
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-all</artifactId>
-            <version>5.11.0</version>
+            <version>5.11.1</version>
             <scope>compile</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-web</artifactId>
+            <version>5.11.1</version>
+            <scope>compile</scope>
+            <!--
+            <exclusions>
+            <exclusion>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+            </exclusion>
+            </exclusions>
+            -->
+        </dependency>
+
+        <!--
+
+        -->
+        <!--
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>9.2.9.v20150224</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-http</artifactId>
+            <version>9.2.9.v20150224</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-io</artifactId>
+            <version>9.2.9.v20150224</version>
+        </dependency>
+        org.eclipse.jetty:jetty-rewrite:jar:9.3.4.RC0:compile
+[INFO] |  |  \- org.eclipse.jetty:jetty-server:jar:9.2.9.v20150224:compile
+        -->
+        <!--
+        <dependency>
+            <groupId>org.eclipse.jetty.aggregate</groupId>
+            <artifactId>jetty-all</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+            <type>pom</type>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-rewrite</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-server</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        -->
+
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>8.1.0.v20120127</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-io</artifactId>
+            <version>8.1.0.v20120127</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>io.fabric8.insight</groupId>
+            <artifactId>insight-log4j</artifactId>
+            <version>1.1.0.Beta4</version>
+        </dependency>
+
         <dependency>
             <groupId>org.mule.modules</groupId>
             <artifactId>mule-module-cxf</artifactId>
@@ -328,6 +412,11 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>org.apache.xbean</groupId>
+            <artifactId>xbean-spring</artifactId>
+            <version>3.7</version>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.9</version>
@@ -335,12 +424,17 @@
         </dependency>
     </dependencies>
 
-	<repositories>
-		<repository>
-			<id>mulesoft-releases</id>
-			<name>MuleSoft Releases</name>
-			<url>https://repository.mulesoft.org/nexus/content/repositories/releases</url>
-		</repository>
+    <repositories>
+        <repository>
+            <id>maven2repo</id>
+            <name>Maven2</name>
+            <url>http://repo2.maven.org/maven2</url>
+        </repository>
+        <repository>
+            <id>mulesoft-releases</id>
+            <name>MuleSoft Releases</name>
+            <url>https://repository.mulesoft.org/nexus/content/repositories/releases</url>
+        </repository>
         <repository>
             <id>mulesoft-snapshots</id>
             <name>MuleSoft Releases</name>

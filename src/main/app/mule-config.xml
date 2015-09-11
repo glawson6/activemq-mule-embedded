@@ -37,7 +37,7 @@
             </spring:property>
         </spring:bean>
         -->
-        <spring:import resource="classpath:activemq-embedded.xml"/>
+        <spring:import resource="classpath:activemq/activemq-embedded.xml"/>
     </spring:beans>
     <jms:activemq-connector name="jmsConnector1"
                             connectionFactory-ref="connectionFactoryTCP"
